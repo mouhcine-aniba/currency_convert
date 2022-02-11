@@ -61,12 +61,8 @@ namespace currency_converter
                     throw new Exception("amount field must be integer");
                 ConvertionResult r = currency.Convert(_base_combo.SelectedValue.ToString(), _quote_combo.SelectedValue.ToString(), amount);
                 if (r != null)
-                {
-                    int int_result = int.Parse(r.Price.ToString().Substring(0, r.Price.ToString().IndexOf('.')));
-                    _label_result_int.Content = int_result;
-                    _label_result_float.Content = r.Price.ToString().Substring(r.Price.ToString().IndexOf('.'), 4);
+                    _label_result.Content = r.Price.ToString().Substring(0,r.Price.ToString().IndexOf('.')+4);
                     _detail_result.Content = amount + " " + ((currency)_base_combo.SelectedItem).Currency_symbol + " is equal " + r.Price + " of " + ((currency)_quote_combo.SelectedItem).Currency_symbol;
-                }
             }
             catch (Exception ex)
             {
