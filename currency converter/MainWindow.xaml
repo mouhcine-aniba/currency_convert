@@ -5,8 +5,108 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:currency_converter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="ConvertCurrency"  AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Height="713.5" Width="1315.5" Icon="assets/logo.png" >
+    <Grid Background="#FF181735" Margin="0,0,-2,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="343*"/>
+            <ColumnDefinition Width="394*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="615"/>
+        </Grid.RowDefinitions>
+        <Label Content="Base currency" Margin="83,109,92,0" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="16" Grid.Row="1" Height="30" Foreground="White" VerticalContentAlignment="Center"/>
+        <Label Content="Quote currency" Margin="83,283,92,0" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="16" Grid.Row="1" Height="30" Foreground="White" VerticalContentAlignment="Center"/>
+        <Label Content="Amount" Margin="83,191,93,0" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="16" Grid.Row="1" Height="30" Foreground="White"/>
+        <ComboBox Name="_base_combo" Margin="88,136,99,0" VerticalAlignment="Top" Height="38" Background="White" BorderBrush="White" SelectionChanged="_base_combo_SelectionChanged" FontSize="20" FontFamily="Century Gothic" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <ComboBox Name="_quote_combo" Margin="88,312,99,0" VerticalAlignment="Top" Height="38" Background="White" BorderBrush="White" FontSize="20" FontFamily="Century Gothic" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Button Name="convertBtn" Content="Convert" Margin="88,374,97,0" VerticalAlignment="Top" Height="58" Background="#FFD1A103" BorderBrush="{x:Null}" Foreground="White" FontFamily="Century Gothic" FontWeight="Bold" FontSize="18" Click="ConvertBtn_Click" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <TextBox Name="_txtbx_amount" HorizontalAlignment="Left" Height="44" Margin="88,216,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="358" FontSize="22" FontFamily="Century Gothic" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="1"/>
+        <Label Name="_label_symb" Content="BTC" Margin="466,225,0,0" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="16" Grid.Row="1" Height="30" Foreground="White" HorizontalAlignment="Left" Width="40"/>
+        <Label Name="_label_result_int" Content="" HorizontalAlignment="Left" Margin="230,445,0,0" VerticalAlignment="Top" FontSize="48" FontWeight="Bold" FontFamily="Century Gothic" Foreground="#FF0DB468" Width="216" Grid.Row="1" Height="54"/>
+        <Label Name="_label_result_float" Content="" HorizontalAlignment="Left" Margin="264,502,0,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" FontFamily="Century Gothic" Foreground="White" Width="170" Grid.Row="1" Height="40"/>
+        <Label Content="currency converter to calculate exchange rates for currencies and metals.&#xA;Enter the values in the currency calculator." HorizontalAlignment="Left" Margin="77,25,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Light" FontSize="14"/>
+        <Image Source="assets/logo.png" Grid.Column="1" HorizontalAlignment="Left" Height="188" Margin="79,164,0,0" Grid.Row="1" VerticalAlignment="Top" Width="504" RenderTransformOrigin="0.5,0.5"/>
+        <Grid Grid.Column="1" Grid.RowSpan="2"
+              Margin="160,-356,-600,85" d:IsLocked="True">
+
+            <Grid.RenderTransform>
+                <RotateTransform Angle="50" />
+            </Grid.RenderTransform>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="-50,250,-255,-250">
+
+                <StackPanel RenderTransformOrigin="0.524,0.489" Margin="0">
+                    <Border
+                        Width="381"
+                        Height="35"
+                        Margin="150,0,0,0"
+                      
+                        CornerRadius="20" Background="#FFD1A103"
+                    />
+                    <Border
+                        Width="345"
+                        Height="35"
+                        Margin="0,15,0,0"
+                        
+                        CornerRadius="20" Background="#FFD1A103"
+                    />
+                    <Border
+                        Width="294"
+                        Height="35"
+                        Margin="80,15,0,0"
+                        
+                        CornerRadius="20" Background="#FFD1A103"
+                    />
+                </StackPanel>
+                <StackPanel RenderTransformOrigin="0.524,0.489" Width="965">
+                    <Border
+                        Width="339"
+                        Height="35"
+                        Margin="150,0,0,0"
+                        Background="#FFD1A103"
+                        CornerRadius="20"
+                    />
+                    <Border
+                        Height="35"
+                        Margin="322,15,238,0"
+                        Background="#FFD1A103"
+                        CornerRadius="20"
+                    />
+                    <Border
+                        Width="478"
+                        Height="35"
+                        Margin="80,15,0,0"
+                        Background="#FFD1A103"
+                        CornerRadius="20"
+                    />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Label Name="_detail_result" Content="" HorizontalAlignment="Left" Margin="116,556,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Light" FontSize="14"/>
+        <StackPanel Grid.ColumnSpan="2" Margin="0,0,-3,1" Background="#FF0F0F2D">
+            <Label Content="Currency Converter" HorizontalAlignment="Left" Margin="56,6,0,0" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="48" Background="{x:Null}" Foreground="White" Height="85" Width="490"/>
+        </StackPanel>
+        <Button x:Name="exitBtn" Content="X" HorizontalAlignment="Left" Margin="602,22,0,19" Width="71" Height="58" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFF50F0F" FontFamily="Century Gothic" FontWeight="Bold" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Click="ExitBtn_Click">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="raduitBtn" Content=" _" HorizontalAlignment="Left" Margin="519,22,0,19" Width="72" Height="58" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" FontFamily="Century Gothic" FontWeight="Bold" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="1" Click="RaduitBtn_Click">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>
